@@ -2,7 +2,7 @@
 ## class project for hackers class (in development)
 
 ### Description of project goal: 
-This program will detect instances of horizontal gene transfer (HGT) along an evolutionary tree.
+This program will detect instances of horizontal gene transfer (HGT) along an evolutionary tree. It will return inferred HGT gene sequences, their gene trees (possibly), and will map the HGT events along the larger input phylogeny.
 
 ### Description of the code: 
 To identify HGT, this program will use a combination of *k-mer*- and phylogenetic-based methods. This will use packages like"

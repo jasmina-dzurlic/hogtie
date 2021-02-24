@@ -12,9 +12,8 @@ To identify HGT, this program will use a combination of *k-mer*- and phylogeneti
   
 ### Description of the data:
 Inputs will be:
-  * Genomic read data of the genome of interest (recipient genome)
-  * Some sort of k-mer library that includes k-mers from closely and distantly related species (should include potential donor genomes)
-  * Phylogeny
+  * Matrix of character states (k-mer presence/absence)
+  * Phylogeny (branch lengths, topology)
 
 ### Description or demonstration of user interaction:
 The User would call the tool from CLI, point it to the recipient sequences, the sequences for "k-mer library", and the phylogeny. For example:

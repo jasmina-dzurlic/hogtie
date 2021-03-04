@@ -1,23 +1,15 @@
-# project
-## class project for hackers class (in development)
+# HoGTIE (Horizontal Gene Transfer Identification Engine)
+First thought to only occur widely in prokaryotic organisms, recent work has shown the prevalence of horizontal gene transfer (HGT) across the tree of life. HoGTIE uses a combination of k-mer-based and phylogenetic-based comparisons to identify genomic regions and sequences that contain horizontal gene transfer (HGT) in a recipient species. 
 
-### Description of project goal: 
-This program will detect instances of horizontal gene transfer (HGT) along an evolutionary tree. It will return inferred HGT gene sequences, their gene trees (possibly), and will map the HGT events along the larger input phylogeny.
+### In development
+HoGTIE is under active development. If you would like to check out or contribute to the code, hogtie can be installed locally via:
 
-### Description of the code: 
-To identify HGT, this program will use a combination of *k-mer*- and phylogenetic-based methods. This will use packages like"
-  * `kmerkit` (in development) for k-mer parsing and comparison
-  * `toytree` for visualizing HGT along a tree
-  * the program will use a binary state maximum likelihood model for ancestral-state reconstruction
-  
-### Description of the data:
-Inputs will be:
-  * Matrix of character states (k-mer presence/absence)
-  * Phylogeny (branch lengths, topology)
-
-### Description or demonstration of user interaction:
-The User would call the tool from CLI, point it to the recipient sequences, the sequences for "k-mer library", and the phylogeny. For example:
 ```
-create_kmer_lib --donor1 --donor2 --donor3 --relatedspecies1 --relatedspecies2 etc.
-find_my_hgt --recipient pedicularis.fasta --donor k-mer lib --phylo phylogeny.file
+# coming soon...
+# conda install kmerkit -c conda-forge -c bioconda
+
+# for now, do dev installation with pip
+git clone https://github.com/cohen-r/hogtie
+cd hogtie
+pip install -e .
 ```

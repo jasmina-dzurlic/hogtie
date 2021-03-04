@@ -1,5 +1,5 @@
 # HoGTIE (Horizontal Gene Transfer Identification Engine)
-First thought to only occur widely in prokaryotic organisms, recent work has shown the prevalence of horizontal gene transfer (HGT) across the tree of life. HoGTIE uses a combination of k-mer-based and phylogenetic-based comparisons to identify genomic regions and sequences that contain horizontal gene transfer (HGT) in a recipient species. 
+First thought to only occur widely in prokaryotic organisms, recent work has shown the prevalence of horizontal gene transfer (HGT) across the tree of life. HoGTIE uses a combination of k-mer-based and phylogenetic-based comparisons to identify genomic regions and sequences that contain horizontal gene transfer in a recipient species. 
 
 ### In development
 HoGTIE is under active development. If you would like to check out or contribute to the code, hogtie can be installed locally via:

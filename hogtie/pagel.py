@@ -2,6 +2,7 @@
 
 import numpy as np
 import pandas as pd
+import toytree
 from scipy.optimize import minimize
 from scipy.linalg import expm
 
@@ -17,8 +18,10 @@ def datatodict(data):
 
 def assignnodevalues(tree, values):
 	"""
-	
+	Assigns likelihood values to tree tips
 	"""
+    likelihood = datatodict(data = data)
+    tree.set_node_values(feature = "likelihood", values = likelihood)
 	pass
 
 def cond_like(likeleft0, likeleft1, likeright0, likeright1, tL, tR, alpha, beta):

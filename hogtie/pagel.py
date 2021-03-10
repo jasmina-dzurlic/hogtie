@@ -56,9 +56,9 @@ def pruningalg(tree, alpha, beta):
             node.likelihood = likedict
 
 def node_like(tree):
-"""
-Get negetive likelihood value at each node
-"""
+    """
+    Get negetive likelihood value at each node
+    """
     tree.set_node_values('neglike')
     for node in tree.treenode.traverse('postorder'):
         like = node.likelihood[0]*0.5 + node.likelihood[1]*0.5

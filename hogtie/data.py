@@ -1,27 +1,12 @@
 #! usr/bin/env python
 
-#class that will parse the tree, assign the 1's and 0's to tips
+#generating data using ipcoal
 
+import ipcoal
 import toytree
 
-class CharacterTree:
-    """
-    This class will read in a tree in Newick or toytree format and assign
-    character states to its tips. THe output will be used in pagel.py
-    """	
-	def __init___(self, tree):
-
-		pass
-
-	def tree_read(self):
-		"""
-		uses toytree to read tree into heirachical structure, assign labels to tips
-		"""
-		pass
-
-	def character_assign(self):
-		"""
-		Assigns character states, read in as a list of 0's and 1's for each k-mer. Assigns
-		character state to each labeled tip
-		"""
-		pass
+tree = toytree.rtree.unittree(ntips=10, treeheight=1e5)
+mod = ipcoal.Model(tree=tree, Ne=1e6, admixture_edges=[(3, 8, 0.5, 0.5)], nsamples=1)
+mod.sim_loci(1, nsites=10000)
+genos = mod.write_vcf()
+genos.iloc[:, 9:].T

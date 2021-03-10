@@ -6,29 +6,19 @@ import toytree
 from scipy.optimize import minimize
 from scipy.linalg import expm
 
-def datatodict(data):
-	"""
-	Parses data into format that can be used by the cond_like and
-	pruningalg functions
-	"""
+def assign_tip_like_values(tree, data):
+    """
+    Assigns likelihood values to tree tips
+    """
     values = [{0:-(i-1),1:i} for i in data]
-    keys = list(range(0, len(mydata), 1))
+    keys = list(range(0, len(data), 1))
     valuesdict = dict(zip(keys,values))
-    return valuesdict
-
-def assignnodevalues(tree, values):
-	"""
-	Assigns likelihood values to tree tips
-	"""
-    likelihood = datatodict(data = data)
-    tree.set_node_values(feature = "likelihood", values = likelihood)
-	pass
+    tree = tree.set_node_values(feature = "likelihood", values = valuesdict)
 
 def cond_like(likeleft0, likeleft1, likeright0, likeright1, tL, tR, alpha, beta):
 	"""
 	Calculates conditional likelihood of character states at each node
 	"""
-
     Q = np.array([[-alpha, alpha], [beta, -beta]])
     probleft = expm(Q*tL)
     probright = expm(Q*tR)
@@ -64,3 +54,36 @@ def pruningalg(tree, alpha, beta):
                                  alpha = alpha,
                                  beta = beta)
             node.likelihood = likedict
+
+def node_like(tree):
+"""
+Get negetive likelihood value at each node
+"""
+    tree.set_node_values('neglike')
+    for node in tree.treenode.traverse('postorder'):
+        like = node.likelihood[0]*0.5 + node.likelihood[1]*0.5
+        node.neglike = -like
+    return tree
+
+def model_fit(tree): #still fixing bugs
+    """
+    Find the maximum likelihood estimate of the two
+    rate model parameters at each node given the data.
+    """
+    tree.set_node_values('alpha')
+    tree.set_node_values('beta')
+    for node in tree.treenode.traverse('postorder'):
+        estimate = minimize(
+            fun=node_like,
+            x0=np.array([1., 1.]),
+            method='L-BFGS-B',
+            bounds=((0, 10), (0, 10))
+            )
+        result = {
+            'alpha': round(estimate.x[0], 3),
+            'beta': round(estimate.x[1], 3), 
+            'convergence': estimate.success,
+            }
+        node.alpha = result['alpha']
+        node.beta = result['beta']
+    return tree
